@@ -21,10 +21,8 @@ const memoryCheck = (memory) => {
   return memory > 4294967296;
 };
 
-const checkAcess = (func) => {
-  const mode = process.env.MODE;
-  mode == "admin" ? aboutOS() : console.log("no access");
-};
+const checkAcess = (cb, currentMode) =>
+  currentMode == process.env.MODE ? cb() : console.log("no access");
 
-checkAcess(aboutOS);
+checkAcess(aboutOS, currentMode);
 console.log(memoryCheck(os.freemem()));
